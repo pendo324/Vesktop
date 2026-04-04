@@ -10,6 +10,7 @@ import { classNameFactory } from "@vencord/types/api/Styles";
 import { BaseText, Divider, ErrorBoundary } from "@vencord/types/components";
 import { ComponentType } from "react";
 import { WebRTCIPHandlingPolicyPicker } from "renderer/components/settings/WebRTCIPHandlingPolicyPicker";
+import { KeyBindSettings } from "renderer/globalShortcuts/ShortcutSettings";
 import { getValueAndOnChange, Settings, useSettings } from "renderer/settings";
 import { isMac } from "renderer/utils";
 
@@ -147,7 +148,7 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
 
         WebRTCIPHandlingPolicyPicker
     ],
-
+    KeyBinds: [KeyBindSettings],
     "Developer Options": [DeveloperOptionsButton]
 };
 
