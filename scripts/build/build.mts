@@ -57,10 +57,7 @@ async function copyLibVesktop() {
     if (process.platform !== "linux") return;
 
     try {
-        await copyFile(
-            "./packages/libvesktop/build/Release/vesktop.node",
-            `./static/dist/libvesktop-${process.arch}.node`
-        );
+        await copyFile("./packages/libvesktop/target/release/liblibvesktop.so", `./static/dist/libvesktop-${process.arch}.node`);
         console.log("Using local libvesktop build");
     } catch {
         console.log(

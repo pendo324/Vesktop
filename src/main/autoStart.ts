@@ -16,8 +16,8 @@ import { escapeDesktopFileArgument } from "./utils/desktopFileEscape";
 
 interface AutoStart {
     isEnabled(): boolean;
-    enable(): void;
-    disable(): void;
+    enable(): void | Promise<void>;
+    disable(): void | Promise<void>;
 }
 
 function getEscapedCommandLine() {
@@ -52,22 +52,20 @@ function makeAutoStartLinuxDesktop(): AutoStart {
     };
 }
 
-function makeAutoStartLinuxPortal() {
+function makeAutoStartLinuxPortal(): AutoStart {
     return {
         isEnabled: () => State.store.linuxAutoStartEnabled === true,
-        enable() {
-            const success = requestBackground(true, getEscapedCommandLine());
+        async enable() {
+            const success = await requestBackground(true, getEscapedCommandLine());
             if (success) {
                 State.store.linuxAutoStartEnabled = true;
             }
-            return success;
         },
-        disable() {
-            const success = requestBackground(false, []);
+        async disable() {
+            const success = await requestBackground(false, []);
             if (success) {
                 State.store.linuxAutoStartEnabled = false;
             }
-            return success;
         }
     };
 }

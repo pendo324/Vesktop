@@ -22,11 +22,11 @@ function loadLibVesktop() {
     return libVesktop;
 }
 
-export function getAccentColor() {
-    return loadLibVesktop()?.getAccentColor() ?? null;
+export async function getAccentColor() {
+    return (await loadLibVesktop()?.getAccentColor()) ?? null;
 }
 
-export function updateUnityLauncherCount(count: number) {
+export async function updateUnityLauncherCount(count: number) {
     const libVesktop = loadLibVesktop();
     if (!libVesktop) {
         return app.setBadgeCount(count);
@@ -35,6 +35,6 @@ export function updateUnityLauncherCount(count: number) {
     return libVesktop.updateUnityLauncherCount(count);
 }
 
-export function requestBackground(autoStart: boolean, commandLine: string[]) {
-    return loadLibVesktop()?.requestBackground(autoStart, commandLine) ?? false;
+export async function requestBackground(autoStart: boolean, commandLine: string[]) {
+    return (await loadLibVesktop()?.requestBackground(autoStart, commandLine)) ?? false;
 }

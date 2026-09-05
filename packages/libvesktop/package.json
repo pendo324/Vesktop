@@ -1,14 +1,20 @@
 {
     "name": "libvesktop",
-    "main": "build/Release/vesktop.node",
+    "version": "0.1.0",
+    "main": "index.js",
     "types": "index.d.ts",
+    "napi": {
+        "binaryName": "vesktop",
+        "targets": ["x86_64-unknown-linux-gnu", "aarch64-unknown-linux-gnu"]
+    },
     "devDependencies": {
-        "node-addon-api": "^8.5.0",
-        "node-gyp": "^11.4.2"
+        "@napi-rs/cli": "^3.9.0"
     },
     "scripts": {
-        "build": "node-gyp configure build",
-        "clean": "node-gyp clean",
-        "test": "npm run build && node test.js"
+        "build": "cargo build --release --lib",
+        "build:cross": "./build.sh",
+        "build:debug": "cargo build --lib",
+        "clean": "rm -rf target *.node index.js",
+        "test": "pnpm run build:debug && node --test test.js"
     }
 }
