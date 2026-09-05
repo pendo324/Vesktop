@@ -7,17 +7,8 @@
 import "./ShortcutSettings.css";
 
 import { BaseText, Button, Card, DeleteIcon, Switch } from "@vencord/types/components";
-import {
-    classNameFactory,
-    identity,
-    ModalCloseButton,
-    ModalContent,
-    ModalHeader,
-    ModalRoot,
-    ModalSize,
-    openModal
-} from "@vencord/types/utils";
-import { React, Select, useState } from "@vencord/types/webpack/common";
+import { classNameFactory, identity } from "@vencord/types/utils";
+import { Modal, openModal, React, Select, useState } from "@vencord/types/webpack/common";
 import { SettingsComponent } from "renderer/components/settings/Settings";
 import { onIpcCommand } from "renderer/ipcCommands";
 import { reactiveValue } from "renderer/reactiveState";
@@ -181,18 +172,9 @@ export function KeyBindSettings() {
 
 export function openKeybindsModal() {
     openModal(props => (
-        <ModalRoot {...props} size={ModalSize.LARGE}>
-            <ModalHeader>
-                <BaseText size="lg" weight="semibold" tag="h3" style={{ flexGrow: 1 }}>
-                    Keybinds
-                </BaseText>
-                <ModalCloseButton onClick={props.onClose} />
-            </ModalHeader>
-
-            <ModalContent>
-                <KeyBindSettings />
-            </ModalContent>
-        </ModalRoot>
+        <Modal {...props} size="lg" title="Keybinds">
+            <KeyBindSettings />
+        </Modal>
     ));
 }
 

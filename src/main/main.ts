@@ -12,7 +12,6 @@ import "./vesktopProtocol";
 import { app, BrowserWindow, nativeTheme } from "electron";
 import { IpcCommands } from "shared/IpcEvents";
 
-// eslint-disable-next-line no-duplicate-imports
 import { CommandLine } from "./cli";
 import { DATA_DIR } from "./constants";
 import { createFirstLaunchTour } from "./firstLaunch";
